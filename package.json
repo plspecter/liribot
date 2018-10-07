@@ -1,0 +1,19 @@
+{
+  "name": "movies.",
+  "version": "1.0.0",
+  "description": "for liribot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lirirbot"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "i": "^0.3.6",
+    "npm": "^6.4.1",
+    "omdb": "^0.8.0"
+  }
+}
