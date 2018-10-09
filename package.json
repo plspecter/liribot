@@ -1,19 +1,18 @@
 {
-  "name": "movies.",
+  "name": "week11",
   "version": "1.0.0",
-  "description": "for liribot",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "lirirbot"
-  ],
-  "author": "me",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "i": "^0.3.6",
-    "npm": "^6.4.1",
-    "omdb": "^0.8.0"
+    "bandsintown": "^1.0.1",
+    "dotenv": "^6.0.0",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.88.0"
   }
 }

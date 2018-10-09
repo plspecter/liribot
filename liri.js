@@ -1,42 +1,76 @@
-//get the apis requires
-var omdbpai = require("omdpai");
-var napster = require("napster");
 
-//call the api here?
-var options = {
-    provider: "omdbpai",
-    apikey: "tt3896198&apikey=cd19a446",  
-};
+require("dotenv").config();
 
-var omdbapi = omdbapiOptions(options);
-//the movie or song you type in the terminal will be the third argument
-var Songname = process.agrv[2];
+var keys=require("./keys.js")//we are importing keys file here using request method
+var spotify = new spotify(keys.spotify);//access spotify keys
 
+//var spotify = new Spotify(keys.spotify);//this will give acess to spotify object in keys.js
 
+// Include the request npm package (Don't forget to run "npm install request" in this folder first!)
+var request = require("request");//these needs to be installed 
 
-//this is the movie api (omdbapi)
+// Store all of the arguments in an array
 
-//or here?
-var queryUrl = "http://www.omdbapi.com/?t=" + Moviename + "tt3896198&apikey=cd19a446";
-console.log(queryUrl);
+// Create an empty variable for holding the movie name
+var movieName = process.argv[2];
 
-var Moviename = process.agrv[2];
-
-//
-request(queryUrl, function(error, response, body) {
-//if the request works then..
-
-if (!error && response.statusCode === 200) {
-
-    console.log ()
-
-}
-
-})
+//Create an empty variable for holding the artist name
+var artist = process.argv[2];
 
 
-//this is the music api
-var queryUrl = "https://api.napster.com/v2.1/tracks/top?apikey=" + Songname + "NmFkMGI5M2QtODFlNy00MzMyLWIwYzItNzUxZWRiZTc1OTBm";
-console.log(queryUrl);
+// Then run a request to the OMDB API with the movie specified
+var omdbapi = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+//for bandsintown api
+var bandsintown = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+
+var spotify = "" + song + "4304517fc1f640a99a614b5b73c4e64a"
 
 
+
+// This line is just to help us debug against the actual URL.
+console.log(omdbapi);
+console.log(bandsintown);
+
+request(omdbapi, function(error, response, body) {
+
+  // If the request is successful for omdbapi 
+  if (!error && response.statusCode === 200) {
+console.log(body)
+    // Parse the body of the site and recover just the imdbRating
+    // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+    console.log("Release Year: " + JSON.parse(body).Year);
+  }
+});
+
+request(bandsintown, function(error, response, body) {
+
+    // If the request is successful for bandsintown
+    if (!error && response.statusCode === 200) {
+  console.log(body)
+      // Parse the body of the site and recover just the imdbRating
+      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+      console.log("This band is playing at " + JSON.parse(body).Year);
+    }
+  });
+
+
+request(spotify, function(error, response, body) {
+
+    // If the request is successful for bandsintown
+    if (!error && response.statusCode === 200) {
+  console.log(body)
+      // Parse the body of the site and recover just the imdbRating
+      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+      console.log(" " + JSON.parse(body).Year);
+    }
+  });
+
+  //What to type in terminal
+  //node liri.js movie-this '<movie name here>'
+  //node liri.js do-what-it-says
+  //spotify-this-song
+  //concert-this
+
+  //Spotify id and secret
+  //Id - 4304517fc1f640a99a614b5b73c4e64a
+//Secret - 03c34ad5bf1342b8b9714223f90b6b95
