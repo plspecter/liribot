@@ -1,8 +1,8 @@
 
 require("dotenv").config();
-require("bandsintown").config();
+// require("bandsintown").config();
 
-var keys=require("./keys.js")//we are importing keys file here using request method
+var keys = require("./keys.js")//we are importing keys file here using request method
 // var spotify = new spotify(keys.spotify);//access spotify keys
 
 //var spotify = new Spotify(keys.spotify);//this will give acess to spotify object in keys.js
@@ -29,7 +29,7 @@ var omdbapi = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=
 //for bandsintown api
 var bandsintown = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 //not sure if this is the right html link?
-var spotify = "https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10" + song + "4304517fc1f640a99a614b5b73c4e64a"
+var spotify = "https://api.spotify.com/v1/tracks/" + song + "4304517fc1f640a99a614b5b73c4e64a"
 
 
 
@@ -56,7 +56,7 @@ request(bandsintown, function(error, response, body) {
   console.log(body)
       // Parse the body of the site and recover just the imdbRating
       // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-      console.log("This band is playing at " + JSON.parse(body).Year);
+      console.log(JSON.parse(body).venue);
     }
   });
 
@@ -68,7 +68,7 @@ request(spotify, function(error, response, body) {
   console.log(body)
       // Parse the body of the site and recover just the imdbRating
       // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-      console.log("This song is " + JSON.parse(body).Year);
+      console.log("This song is " + JSON.parse(body).album_type);
     }
   });
 
